@@ -32,12 +32,12 @@ const SignUpCard = () => {
   return (
     <Card className="w-full h-full">
       <CardHeader>
-        <CardTitle>Sign Up</CardTitle>
+        <CardTitle className="text-lg">Sign Up</CardTitle>
         <CardDescription>Sign up to access your account</CardDescription>
       </CardHeader>
 
       <CardContent>
-        <signupForm className="space-y-3" onSubmit={handleSubmit}>
+        <form className="space-y-3" onSubmit={handleSubmit}>
           <Input
             name="userName"
             placeholder="User name"
@@ -84,7 +84,7 @@ const SignUpCard = () => {
           <Button type="submit" size="lg" className="w-full">
             Continue
           </Button>
-        </signupForm>
+        </form>
 
         <Separator className="my-5" />
 
