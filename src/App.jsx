@@ -1,8 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import Auth from '@/pages/Auth/Auth';
-import SignInCard from '@/components/organisms/Auth/SignInCard';
-import NotFound from '@/pages/NotFound';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+import Auth from '@/pages/Auth/Auth';
+import NotFound from '@/pages/NotFound';
+import SignInContainer from '@/components/organisms/Auth/SignInContainer';
 import SignupContainer from '@/components/organisms/Auth/SignupContainer';
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
           path="/auth/signin"
           element={
             <Auth>
-              <SignInCard />
+              <SignInContainer />
             </Auth>
           }
         />
@@ -22,7 +23,7 @@ function App() {
           path="/auth/signup"
           element={
             <Auth>
-              <SignupContainer/>
+              <SignupContainer />
             </Auth>
           }
         />

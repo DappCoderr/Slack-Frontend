@@ -8,15 +8,9 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SignInCard = () => {
-  const [signInForm, setSignInForm] = useState({
-    email: '',
-    password: '',
-  });
-
+const SignInCard = ({ signInForm, setSignInForm }) => {
   const navigate = useNavigate();
   return (
     <Card>

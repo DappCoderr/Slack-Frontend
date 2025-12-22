@@ -11,8 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useNavigate } from 'react-router-dom';
 
-const SignUpCard = ({signupForm, setSignupForm}) => {
-  
+const SignUpCard = ({ signupForm, setSignupForm }) => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
