@@ -9,12 +9,15 @@ import {
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SignInCard = () => {
   const [signInForm, setSignInForm] = useState({
     email: '',
     password: '',
   });
+
+  const navigate = useNavigate();
   return (
     <Card>
       <CardHeader>
@@ -51,7 +54,10 @@ const SignInCard = () => {
 
         <p className="text-sm text-muted-foreground">
           Don't have an account?{' '}
-          <span className="hover:underline text-sky-600 cursor-pointer">
+          <span
+            className="hover:underline text-sky-600 cursor-pointer"
+            onClick={() => navigate('/auth/signup')}
+          >
             Sign up
           </span>
         </p>

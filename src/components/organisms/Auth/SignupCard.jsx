@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpCard = () => {
   const [signupForm, setSignupForm] = useState({
@@ -17,6 +18,8 @@ const SignUpCard = () => {
     password: '',
     confirmPassword: '',
   });
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -90,7 +93,10 @@ const SignUpCard = () => {
 
         <p className="text-sm text-muted-foreground">
           Already have an account?{' '}
-          <span className="hover:underline text-sky-600 cursor-pointer">
+          <span
+            className="hover:underline text-sky-600 cursor-pointer"
+            onClick={() => navigate('/auth/signin')}
+          >
             Sign in
           </span>
         </p>
