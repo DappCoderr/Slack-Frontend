@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -11,14 +11,8 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useNavigate } from 'react-router-dom';
 
-const SignUpCard = () => {
-  const [signupForm, setSignupForm] = useState({
-    email: '',
-    userName: '',
-    password: '',
-    confirmPassword: '',
-  });
-
+const SignUpCard = ({signupForm, setSignupForm}) => {
+  
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
