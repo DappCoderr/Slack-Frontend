@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 
 const SignUpCard = () => {
-  const [form, setForm] = useState({
+  const [signupForm, setSignupForm] = useState({
     email: '',
     userName: '',
     password: '',
@@ -21,12 +21,12 @@ const SignUpCard = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (form.password !== form.confirmPassword) {
+    if (signupForm.password !== signupForm.confirmPassword) {
       console.error('Passwords do not match');
       return;
     }
 
-    console.log('Signup data:', form);
+    console.log('Signup data:', signupForm);
   };
 
   return (
@@ -37,13 +37,13 @@ const SignUpCard = () => {
       </CardHeader>
 
       <CardContent>
-        <form className="space-y-3" onSubmit={handleSubmit}>
+        <signupForm className="space-y-3" onSubmit={handleSubmit}>
           <Input
             name="userName"
             placeholder="User name"
-            value={form.userName}
+            value={signupForm.userName}
             onChange={(e) => {
-              setForm({ ...form, userName: e.target.value });
+              setSignupForm({ ...signupForm, userName: e.target.value });
             }}
             required
           />
@@ -52,9 +52,9 @@ const SignUpCard = () => {
             name="email"
             type="email"
             placeholder="Email"
-            value={form.email}
+            value={signupForm.email}
             onChange={(e) => {
-              setForm({ ...form, email: e.target.value });
+              setSignupForm({ ...signupForm, email: e.target.value });
             }}
             required
           />
@@ -63,9 +63,9 @@ const SignUpCard = () => {
             name="password"
             type="password"
             placeholder="Password"
-            value={form.password}
+            value={signupForm.password}
             onChange={(e) => {
-              setForm({ ...form, password: e.target.value });
+              setSignupForm({ ...signupForm, password: e.target.value });
             }}
             required
           />
@@ -74,9 +74,9 @@ const SignUpCard = () => {
             name="confirmPassword"
             type="password"
             placeholder="Confirm Password"
-            value={form.password}
+            value={signupForm.password}
             onChange={(e) => {
-              setForm({ ...form, password: e.target.value });
+              setSignupForm({ ...signupForm, password: e.target.value });
             }}
             required
           />
@@ -84,7 +84,7 @@ const SignUpCard = () => {
           <Button type="submit" size="lg" className="w-full">
             Continue
           </Button>
-        </form>
+        </signupForm>
 
         <Separator className="my-5" />
 
