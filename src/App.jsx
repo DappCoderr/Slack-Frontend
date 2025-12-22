@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Auth from '@/pages/Auth/Auth';
 import SignInCard from '@/components/organisms/Auth/SignInCard';
 import SignUpCard from '@/components/organisms/Auth/signUpCard';
+import NotFound from '@/pages/NotFound';
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
             <SignUpCard />
           </Auth>
         }
+      />
+      <Route
+        path="*"
+        element={<NotFound/>}
       />
     </Routes>
   );
