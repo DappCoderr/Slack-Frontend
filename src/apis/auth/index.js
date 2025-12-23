@@ -1,12 +1,14 @@
-import axios from '@/config/axiosConfig';
+import apis from '@/config/axiosConfig';
 
-export const signUpRequest = async ({ email, password, name }) => {
+export const signUpRequest = async ({ email, password, username }) => {
   try {
-    const response = await axios.post('users/signup', {
+    console.log('signup Request is called....');
+    const response = await apis.post('users/signup', {
       email,
       password,
-      name,
+      username,
     });
+    console.log('signup Request response: ', response);
     return response.data;
   } catch (error) {
     console.log('signUpRequest error: ', error);
@@ -16,7 +18,7 @@ export const signUpRequest = async ({ email, password, name }) => {
 
 export const signInRequest = async ({ email, password }) => {
   try {
-    const response = await axios.post('users/signin', {
+    const response = await apis.post('users/signin', {
       email,
       password,
     });

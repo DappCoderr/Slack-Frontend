@@ -2,11 +2,12 @@ import { signUpRequest } from '@/apis/auth';
 import { useMutation } from '@tanstack/react-query';
 
 export const useSignup = () => {
+  console.log('useSignup is called......');
   const {
     isPending,
     isSuccess,
     error,
-    mutate: singupMutation,
+    mutateAsync: signupMutation,
   } = useMutation({
     mutationFn: signUpRequest,
     onSuccess: (data) => {
@@ -21,6 +22,6 @@ export const useSignup = () => {
     isPending,
     isSuccess,
     error,
-    singupMutation,
+    signupMutation,
   };
 };

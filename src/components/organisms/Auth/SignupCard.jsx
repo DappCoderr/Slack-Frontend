@@ -10,30 +10,54 @@ import {
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useNavigate } from 'react-router-dom';
+import { LucideLoader2, TriangleAlert } from 'lucide-react';
+import { FaCheck } from 'react-icons/fa';
 
-const SignUpCard = ({ signupForm, setSignupForm }) => {
+const SignUpCard = ({
+  error,
+  isSuccess,
+  isPending,
+  validationError,
+  onSignupFormSubmit,
+  signupForm,
+  setSignupForm,
+}) => {
   const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (signupForm.password !== signupForm.confirmPassword) {
-      console.error('Passwords do not match');
-      return;
-    }
-
-    console.log('Signup data:', signupForm);
-  };
 
   return (
     <Card className="w-full h-full">
       <CardHeader>
         <CardTitle className="text-lg">Sign Up</CardTitle>
         <CardDescription>Sign up to access your account</CardDescription>
+
+        {validationError && (
+          <div className="bg-destructive/15 p-4 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6">
+            <TriangleAlert className="size-5" />
+            <p>{validationError.message}</p>
+          </div>
+        )}
+
+        {error && (
+          <div className="bg-destructive/15 p-4 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6">
+            <TriangleAlert className="size-5" />
+            <p>{error.message}</p>
+          </div>
+        )}
+
+        {isSuccess && (
+          <div className="bg-primary/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-primary mb-5">
+            <FaCheck className="size-5" />
+            <p>
+              Successfully signed up. You will be redirected to the login page
+              in a few seconds.
+              <LucideLoader2 className="animate-spin ml-2" />
+            </p>
+          </div>
+        )}
       </CardHeader>
 
       <CardContent>
-        <form className="space-y-3" onSubmit={handleSubmit}>
+        <form className="space-y-3" onSubmit={onSignupFormSubmit}>
           <Input
             name="userName"
             placeholder="User name"
@@ -42,6 +66,7 @@ const SignUpCard = ({ signupForm, setSignupForm }) => {
               setSignupForm({ ...signupForm, userName: e.target.value });
             }}
             required
+            disabled={isPending}
           />
 
           <Input
@@ -53,6 +78,7 @@ const SignUpCard = ({ signupForm, setSignupForm }) => {
               setSignupForm({ ...signupForm, email: e.target.value });
             }}
             required
+            disabled={isPending}
           />
 
           <Input
@@ -64,20 +90,26 @@ const SignUpCard = ({ signupForm, setSignupForm }) => {
               setSignupForm({ ...signupForm, password: e.target.value });
             }}
             required
+            disabled={isPending}
           />
 
           <Input
             name="confirmPassword"
             type="password"
             placeholder="Confirm Password"
-            value={signupForm.password}
+            value={signupForm.confirmPassword}
             onChange={(e) => {
-              setSignupForm({ ...signupForm, password: e.target.value });
+              setSignupForm({ ...signupForm, confirmPassword: e.target.value });
             }}
             required
           />
 
-          <Button type="submit" size="lg" className="w-full">
+          <Button
+            disabled={isPending}
+            type="submit"
+            size="lg"
+            className="w-full"
+          >
             Continue
           </Button>
         </form>
