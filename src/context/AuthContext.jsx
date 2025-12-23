@@ -1,31 +1,29 @@
-const { createContext, useState } = require("react");
+const { createContext, useState } = require('react');
 
-const AuthContext = createContext()
+const AuthContext = createContext();
 
-export const AuthContextProvider = ({children}) => {
+export const AuthContextProvider = ({ children }) => {
+  const [auth, setAuth] = useState({
+    user: null,
+    token: null,
+  });
 
-    const[auth, setAuth] = useState({
-        user: null,
-        token: null
-    })
+  useEffect(() => {
+    const userObj = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
+    if (userObj && token) {
+      setAuth({
+        user: JSON.parse(userObj),
+        token,
+      });
+    }
+  }, []);
 
-    useEffect(() => {
-      const userObj = localStorage.getItem('user');
-      const token = localStorage.getItem('token')
-      if(userObj && token) {
-        setAuth({
-            user: JSON.parse(userObj),
-            token
-        })
-      }
-    }, [])
-    
-
-    return(
-        <AuthContext.Provider value={{auth, setAuth}}>
-            {children}
-        </AuthContext.Provider>
-    )
-}
+  return (
+    <AuthContext.Provider value={{ auth, setAuth }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
 export default AuthContext();
