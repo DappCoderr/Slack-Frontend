@@ -1,5 +1,6 @@
 import { signInRequest } from '@/apis/auth';
 import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 export const useSignin = () => {
   const {
@@ -10,10 +11,17 @@ export const useSignin = () => {
   } = useMutation({
     mutationFn: signInRequest,
     onSuccess: (data) => {
-      console.log('Signin is successfully completed: ', data);
+      console.log('Signin completed successfully:', data);
+      toast.success('Signed in successfully', {
+        description: 'Redirecting to your dashboard...',
+      });
     },
     onError: (error) => {
-      console.log('Failed to signin: ', error);
+      console.log('Failed to sign in:', error);
+      toast.error('Sign in failed', {
+        description:
+          error?.message || 'Please check your credentials and try again.',
+      });
     },
   });
 

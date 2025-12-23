@@ -1,8 +1,8 @@
 import { signUpRequest } from '@/apis/auth';
 import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 export const useSignup = () => {
-  console.log('useSignup is called......');
   const {
     isPending,
     isSuccess,
@@ -11,10 +11,17 @@ export const useSignup = () => {
   } = useMutation({
     mutationFn: signUpRequest,
     onSuccess: (data) => {
-      console.log('Signup is successfully completed: ', data);
+      console.log('Signup completed successfully:', data);
+      toast.success('Account created successfully', {
+        description: 'Redirecting to the sign-in page...',
+      });
     },
     onError: (error) => {
-      console.log('Failed to signup: ', error);
+      console.log('Failed to sign up:', error);
+      toast.error('Sign up failed', {
+        description:
+          error?.message || 'Something went wrong. Please try again.',
+      });
     },
   });
 
