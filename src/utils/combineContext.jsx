@@ -6,4 +6,4 @@ const combineContext = (...providers) => {
   };
 };
 
-export default combineContext
+export default combineContext;
