@@ -5,6 +5,7 @@ import Auth from '@/pages/Auth/Auth';
 import NotFound from '@/pages/NotFound';
 import SignInContainer from '@/components/organisms/Auth/SignInContainer';
 import SignupContainer from '@/components/organisms/Auth/SignupContainer';
+import ProtectedRoute from '@/components/molecules/ProtectedRoute/ProtectedRoute';
 
 const AppRoutes = () => {
   return (
@@ -13,7 +14,8 @@ const AppRoutes = () => {
         path="/auth/signin"
         element={
           <Auth>
-            <SignInContainer />
+            {' '}
+            <SignInContainer />{' '}
           </Auth>
         }
       />
@@ -25,7 +27,14 @@ const AppRoutes = () => {
           </Auth>
         }
       />
-      <Route path="/home" element={<Auth>Home</Auth>} />
+      <Route
+        path="/home"
+        element={
+          <ProtectedRoute>
+            <Auth>Home</Auth>
+          </ProtectedRoute>
+        }
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
