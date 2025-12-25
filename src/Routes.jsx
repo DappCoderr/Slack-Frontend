@@ -6,6 +6,7 @@ import NotFound from '@/pages/NotFound';
 import SignInContainer from '@/components/organisms/Auth/SignInContainer';
 import SignupContainer from '@/components/organisms/Auth/SignupContainer';
 import ProtectedRoute from '@/components/molecules/ProtectedRoute/ProtectedRoute';
+import Home from '@/pages/Home';
 
 const AppRoutes = () => {
   return (
@@ -31,7 +32,9 @@ const AppRoutes = () => {
         path="/home"
         element={
           <ProtectedRoute>
-            <Auth>Home</Auth>
+            <Auth>
+              <Home />
+            </Auth>
           </ProtectedRoute>
         }
       />
