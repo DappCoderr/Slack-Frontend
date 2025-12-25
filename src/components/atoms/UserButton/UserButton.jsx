@@ -8,9 +8,17 @@ import {
 import useAuth from '@/hooks/context/useAuth';
 import { LogOutIcon, SettingsIcon } from 'lucide-react';
 import React from 'react';
+import { toast } from 'sonner';
 
 const UserButton = () => {
-  const { auth } = useAuth();
+  const { auth, logout } = useAuth();
+
+  const handleLogOut = async () => {
+    await logout();
+    toast.success('Successfully Logout', {
+      description: 'Redirecting to your signIn page',
+    });
+  };
 
   return (
     <DropdownMenu>
@@ -27,7 +35,7 @@ const UserButton = () => {
           {' '}
           <SettingsIcon /> Settings
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={handleLogOut}>
           {' '}
           <LogOutIcon /> Logout
         </DropdownMenuItem>

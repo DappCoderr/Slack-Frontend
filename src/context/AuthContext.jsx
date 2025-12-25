@@ -1,14 +1,27 @@
 import { createContext } from 'react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [auth, setAuth] = useState({
     user: null,
     token: null,
     isLoading: true,
   });
+
+  const logout = async () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    setAuth({
+      user: null,
+      token: null,
+      isLoading: false,
+    });
+    navigate('/auth/signin');
+  };
 
   useEffect(() => {
     const user = localStorage.getItem('user');
@@ -29,7 +42,7 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
+    <AuthContext.Provider value={{ auth, setAuth, logout }}>
       {children}
     </AuthContext.Provider>
   );
