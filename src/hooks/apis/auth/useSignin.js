@@ -1,8 +1,12 @@
 import { signInRequest } from '@/apis/auth';
+import useAuth from '@/hooks/context/useAuth';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 export const useSignin = () => {
+
+  const {setAuth} = useAuth()
+
   const {
     isPending,
     isSuccess,
@@ -17,6 +21,12 @@ export const useSignin = () => {
       const token = response.data.token;
       localStorage.setItem('user', userObj);
       localStorage.setItem('token', token);
+
+      setAuth({
+        user: userObj,
+        token: token,
+        isLoading: false
+      })
 
       toast.success('Signed in successfully', {
         description: 'Redirecting to your dashboard...',
