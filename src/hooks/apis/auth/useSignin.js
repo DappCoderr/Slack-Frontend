@@ -4,8 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 export const useSignin = () => {
-
-  const {setAuth} = useAuth()
+  const { setAuth } = useAuth();
 
   const {
     isPending,
@@ -25,8 +24,8 @@ export const useSignin = () => {
       setAuth({
         user: userObj,
         token: token,
-        isLoading: false
-      })
+        isLoading: false,
+      });
 
       toast.success('Signed in successfully', {
         description: 'Redirecting to your dashboard...',

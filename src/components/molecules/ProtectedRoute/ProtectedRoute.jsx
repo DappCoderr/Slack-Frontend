@@ -4,7 +4,7 @@ import { LucideLoader2 } from 'lucide-react';
 import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ children }) => {
-  const {auth} = useAuth();
+  const { auth } = useAuth();
 
   if (auth.isLoading) {
     return (
