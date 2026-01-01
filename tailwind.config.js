@@ -18,6 +18,7 @@ export default {
         },
         slack: {
           DEFAULT: '#5c3B58',
+          Dark: '#481349',
         },
         popover: {
           DEFAULT: 'hsl(var(--popover))',
