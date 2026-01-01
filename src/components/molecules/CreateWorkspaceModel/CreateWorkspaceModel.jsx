@@ -9,10 +9,13 @@ import { Input } from '@/components/ui/input';
 import { useCreateWorkspace } from '@/hooks/apis/workspace/useCreateWorkspace';
 import useCreateWorkspaceModel from '@/hooks/context/useCreateWorkspaceModel';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CreateWorkspaceModel = () => {
   const { openCreateWorkspaceModel, setOpenCreateWorkspaceModel } =
     useCreateWorkspaceModel();
+
+  const navigate = useNavigate();
 
   const { isPending, createWorkspaceMutation } = useCreateWorkspace();
 
@@ -23,6 +26,7 @@ const CreateWorkspaceModel = () => {
     try {
       const data = await createWorkspaceMutation({ name: workspaceName });
       console.log('Created the workspace', data);
+      navigate(`/workspace/${data._id}`);
     } catch (error) {
       console.log('Not able to create a new workspace: ', error);
     } finally {
