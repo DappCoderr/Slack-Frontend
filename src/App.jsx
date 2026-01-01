@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from '@/components/ui/sonner';
 import { AppContextProvider } from './context/AppContextProvider';
 import AppRoutes from '@/Routes';
+import Model from './components/organisms/Model/Model';
 
 function App() {
   const queryClient = new QueryClient();
@@ -9,8 +10,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AppContextProvider>
         <AppRoutes />
-        <Toaster />
+        <Model />
       </AppContextProvider>
+      <Toaster />
     </QueryClientProvider>
   );
 }
