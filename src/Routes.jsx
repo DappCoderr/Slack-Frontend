@@ -7,6 +7,7 @@ import SignInContainer from '@/components/organisms/Auth/SignInContainer';
 import SignupContainer from '@/components/organisms/Auth/SignupContainer';
 import ProtectedRoute from '@/components/molecules/ProtectedRoute/ProtectedRoute';
 import Home from '@/pages/Home';
+import WorkspaceLayout from '@/pages/Workspace/Layout';
 
 const AppRoutes = () => {
   return (
@@ -35,6 +36,14 @@ const AppRoutes = () => {
             <Auth>
               <Home />
             </Auth>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/workspace/:workspacesId"
+        element={
+          <ProtectedRoute>
+            <WorkspaceLayout />
           </ProtectedRoute>
         }
       />
