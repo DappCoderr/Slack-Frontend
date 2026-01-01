@@ -6,18 +6,24 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import useAuth from '@/hooks/context/useAuth';
-import { LogOutIcon, SettingsIcon } from 'lucide-react';
+import useCreateWorkspaceModel from '@/hooks/context/useCreateWorkspaceModel';
+import { LogOutIcon, PencilIcon, SettingsIcon } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 
 const UserButton = () => {
   const { auth, logout } = useAuth();
+  const { setOpenCreateWorkspaceModel } = useCreateWorkspaceModel();
 
   const handleLogOut = async () => {
     await logout();
     toast.success('Successfully Logout', {
       description: 'Redirecting to your signIn page',
     });
+  };
+
+  const handleOpenWorkspaceCreateModal = () => {
+    setOpenCreateWorkspaceModel(true);
   };
 
   return (
@@ -31,6 +37,10 @@ const UserButton = () => {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
+        <DropdownMenuItem onClick={handleOpenWorkspaceCreateModal}>
+          {' '}
+          <PencilIcon /> Create Workspace
+        </DropdownMenuItem>
         <DropdownMenuItem>
           {' '}
           <SettingsIcon /> Settings
