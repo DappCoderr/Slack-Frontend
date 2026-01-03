@@ -6,9 +6,10 @@ import { useParams } from 'react-router-dom';
 
 const WorkspaceNavbar = () => {
   const { workspaceId } = useParams();
-  //   const { isLoading, workspaces } = useGetWorkspaceById();
+  const { isLoading, workspaces, error, isSuccess } =
+    useGetWorkspaceById(workspaceId);
 
-  if (false) {
+  if (isLoading) {
     return <LucideLoader2 className="animate-spin mt-2" />;
   }
   return (
