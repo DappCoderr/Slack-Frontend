@@ -10,10 +10,10 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-      <AppContextProvider>
-        <AppRoutes />
-        <Model />
-      </AppContextProvider>
+        <AppContextProvider>
+          <AppRoutes />
+          <Model />
+        </AppContextProvider>
       </TooltipProvider>
       <Toaster />
     </QueryClientProvider>
