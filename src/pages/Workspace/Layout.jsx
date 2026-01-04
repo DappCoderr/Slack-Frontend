@@ -1,15 +1,32 @@
 import React from 'react';
 import WorkspaceSidebar from '@/components/organisms/Workspace/WorkspaceSidebar';
 import WorkspaceNavbar from '@/components/organisms/Workspace/WorkspaceNavbar';
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from '@/components/ui/resizable';
 
 const WorkspaceLayout = ({ children }) => {
   return (
-    <div className="h-[100vh]">
+    <div className="h-screen flex flex-col">
       <WorkspaceNavbar />
       <div className="flex h-[calc(100vh-40px)]">
         <WorkspaceSidebar />
-        Workspace
-        {children}
+        <ResizablePanelGroup
+          direction="horizontal"
+          autoSaveId={'workspace-resize'}
+        >
+          <ResizablePanel
+            defaultSize={20}
+            minSize={11}
+            className="bg-slack-Medium"
+          >
+            <div>Sidebar</div>
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel minSize={20}>{children}</ResizablePanel>
+        </ResizablePanelGroup>
       </div>
     </div>
   );
