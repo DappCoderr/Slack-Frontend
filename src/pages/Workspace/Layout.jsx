@@ -6,6 +6,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from '@/components/ui/resizable';
+import WorkspacePanel from '@/components/organisms/Workspace/WorkspacePanel';
 
 const WorkspaceLayout = ({ children }) => {
   return (
@@ -15,14 +16,14 @@ const WorkspaceLayout = ({ children }) => {
         <WorkspaceSidebar />
         <ResizablePanelGroup
           direction="horizontal"
-          autoSaveId={'workspace-resize'}
+          // autoSaveId="workspace-resize"
         >
           <ResizablePanel
-            defaultSize={20}
-            minSize={11}
+            defaultSize={220}
+            minSize={100}
             className="bg-slack-Medium"
           >
-            <div>Sidebar</div>
+            <WorkspacePanel />
           </ResizablePanel>
           <ResizableHandle withHandle />
           <ResizablePanel minSize={20}>{children}</ResizablePanel>
