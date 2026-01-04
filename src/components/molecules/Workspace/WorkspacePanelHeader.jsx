@@ -6,6 +6,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import useAuth from '@/hooks/context/useAuth';
 import { ChevronDownIcon, ListFilterIcon, SquarePenIcon } from 'lucide-react';
 import React from 'react';
@@ -54,13 +59,24 @@ const WorkspacePanelHeader = ({ workspace }) => {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <div>
-        <Button variant="transparent" size="iconSm">
-          <ListFilterIcon className='size-5'/>
-        </Button>
-        <Button variant="transparent" size="iconSm">
-          <SquarePenIcon className='size-5'/>
-        </Button>
+      <div className="flex gap-1">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="transparent" size="iconSm" aria-label="Filter">
+              <ListFilterIcon className="size-5" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>Filter</TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="transparent" size="iconSm" aria-label="Edit">
+              <SquarePenIcon className="size-5" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>Edit</TooltipContent>
+        </Tooltip>
       </div>
     </div>
   );
