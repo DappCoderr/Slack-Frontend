@@ -12,12 +12,16 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import useAuth from '@/hooks/context/useAuth';
+import useWorkspacePrefrenceModal from '@/hooks/context/useWorkspacePrefrenceModal';
 import { ChevronDownIcon, ListFilterIcon, SquarePenIcon } from 'lucide-react';
 import React from 'react';
 
 const WorkspacePanelHeader = ({ workspace }) => {
   const workspaceMembers = workspace?.members;
   const { auth } = useAuth();
+
+  const { setOpenPrefrenceModel, setInitialValue } =
+    useWorkspacePrefrenceModal();
 
   const isLoggedUserAdminOfWorkspace = workspaceMembers?.find(
     (member) =>
@@ -49,7 +53,14 @@ const WorkspacePanelHeader = ({ workspace }) => {
 
           {isLoggedUserAdminOfWorkspace && (
             <>
-              <DropdownMenuItem>Prefrences</DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  setOpenPrefrenceModel(true);
+                  setInitialValue(workspace?.name);
+                }}
+              >
+                Prefrences
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="cursor-pointer py-2">
                 Invite people to {workspace?.name}
