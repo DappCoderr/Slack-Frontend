@@ -10,9 +10,8 @@ export const useCreateWorkspace = () => {
     error,
     mutateAsync: createWorkspaceMutation,
   } = useMutation({
-    mutationFn: (data) => {
-      return createWorkspaceRequest({ ...data, token: auth?.token });
-    },
+    mutationFn: (data) =>
+      createWorkspaceRequest({ ...data, token: auth?.token }),
     onSuccess: (data) => {
       console.log('Successfully created workspace: ', data);
     },
