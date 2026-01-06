@@ -1,18 +1,14 @@
-import { Button } from '@/components/ui/button';
 import React from 'react';
+
+import { Button } from '@/components/ui/button';
 
 const SidebarButton = ({ Icon, label, isActive }) => {
   return (
-    <div className="flex flex-col items-center justify-center curson-pointer gay-y-0.5">
-      <Button
-        variant="transparent"
-        className="size-9 p-2 group-hover:bg-accent/20"
-      >
-        <Icon className="size-5 text-white group-hover:scale-110 transition-all" />
+    <div className='flex flex-col items-center justify-center curson-pointer gay-y-0.5'>
+      <Button variant='transparent' className='size-9 p-2 group-hover:bg-accent/20'>
+        <Icon className='size-5 text-white group-hover:scale-110 transition-all' />
       </Button>
-      <span className="text-[10px] text-white group-hover:text-accent">
-        {label}
-      </span>
+      <span className='text-[10px] text-white group-hover:text-accent'>{label}</span>
     </div>
   );
 };

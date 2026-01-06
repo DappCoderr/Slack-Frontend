@@ -3,6 +3,13 @@
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "es5",
-  "printWidth": 80,
-  "jsxSingleQuote": false
+  "printWidth": 300,
+  "jsxSingleQuote": true,
+
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+
+  "importOrder": ["^react$", "^react-dom$", "<THIRD_PARTY_MODULES>", "^@/.*$", "^[./]"],
+
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

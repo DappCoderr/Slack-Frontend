@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
-import SignInCard from './SignInCard';
 import { useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
+
 import { useSignin } from '@/hooks/apis/auth/useSignin';
+
+import SignInCard from './SignInCard';
 
 const SignInContainer = () => {
   const [signInForm, setSignInForm] = useState({
@@ -40,17 +43,7 @@ const SignInContainer = () => {
     }
   }, [isSuccess, navigate]);
 
-  return (
-    <SignInCard
-      isPending={isPending}
-      isSuccess={isSuccess}
-      error={error}
-      validationError={validationError}
-      onSigninFormSubmit={onSigninFormSubmit}
-      signInForm={signInForm}
-      setSignInForm={setSignInForm}
-    />
-  );
+  return <SignInCard isPending={isPending} isSuccess={isSuccess} error={error} validationError={validationError} onSigninFormSubmit={onSigninFormSubmit} signInForm={signInForm} setSignInForm={setSignInForm} />;
 };
 
 export default SignInContainer;

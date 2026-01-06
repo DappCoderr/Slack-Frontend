@@ -4,12 +4,11 @@ import { useState } from 'react';
 const CreateWorkspaceContext = createContext();
 
 export const CreateWorkspaceContextProvider = ({ children }) => {
-  const [openCreateWorkspaceModel, setOpenCreateWorkspaceModel] =
-    useState(false);
+  const [openCreateWorkspaceModel, setOpenCreateWorkspaceModel] = useState(false);
+
+  // prettier-ignore
   return (
-    <CreateWorkspaceContext.Provider
-      value={{ openCreateWorkspaceModel, setOpenCreateWorkspaceModel }}
-    >
+    <CreateWorkspaceContext.Provider value={{ openCreateWorkspaceModel, setOpenCreateWorkspaceModel }}>
       {children}
     </CreateWorkspaceContext.Provider>
   );

@@ -1,17 +1,14 @@
-import { signInRequest } from '@/apis/auth';
-import useAuth from '@/hooks/context/useAuth';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
+
+import { signInRequest } from '@/apis/auth';
+import useAuth from '@/hooks/context/useAuth';
 
 export const useSignin = () => {
   const { setAuth } = useAuth();
 
-  const {
-    isPending,
-    isSuccess,
-    error,
-    mutateAsync: signinMutation,
-  } = useMutation({
+  // prettier-ignore
+  const { isPending, isSuccess, error, mutateAsync: signinMutation} = useMutation({
     mutationFn: signInRequest,
     onSuccess: (response) => {
       console.log('Signin completed successfully:', response);
@@ -34,8 +31,7 @@ export const useSignin = () => {
     onError: (error) => {
       console.log('Failed to sign in:', error);
       toast.error('Sign in failed', {
-        description:
-          error?.message || 'Please check your credentials and try again.',
+        description: error?.message || 'Please check your credentials and try again.',
       });
     },
   });

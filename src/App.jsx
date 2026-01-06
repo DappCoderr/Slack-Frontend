@@ -1,9 +1,11 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Toaster } from '@/components/ui/sonner';
-import { AppContextProvider } from './context/AppContextProvider';
+
 import AppRoutes from '@/Routes';
+import { Toaster } from '@/components/ui/sonner';
+
 import Model from './components/organisms/Model/Model';
 import { TooltipProvider } from './components/ui/tooltip';
+import { AppContextProvider } from './context/AppContextProvider';
 
 function App() {
   const queryClient = new QueryClient();

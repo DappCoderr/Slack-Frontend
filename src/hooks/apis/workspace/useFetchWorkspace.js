@@ -6,12 +6,8 @@ import useAuth from '@/hooks/context/useAuth';
 export const useFetchWorkspace = () => {
   const { auth } = useAuth();
 
-  const {
-    isFetching,
-    isSuccess,
-    error,
-    data: workspaces,
-  } = useQuery({
+  // prettier-ignore
+  const { isFetching, isSuccess, error, data: workspaces} = useQuery({
     queryFn: () => fetchWorkspaceRequest({ token: auth?.token }),
     queryKey: ['fetchWorkspaces'],
     staleTime: 30000,

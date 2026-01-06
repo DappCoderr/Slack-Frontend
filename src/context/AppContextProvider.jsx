@@ -1,10 +1,12 @@
 import combineContext from '@/utils/combineContext';
+
 import { AuthContextProvider } from './AuthContext';
 import { CreateWorkspaceContextProvider } from './CreateWorkspaceContext';
-import { WorkspacePrefrencesModalProvider } from './WorkspacePrefrencesModal';
+import { WorkspacePrefrencesModalContextProvider } from './WorkspacePrefrencesModalContext';
 
+// prettier-ignore
 export const AppContextProvider = combineContext(
-  AuthContextProvider,
-  CreateWorkspaceContextProvider,
-  WorkspacePrefrencesModalProvider
+    AuthContextProvider, 
+    CreateWorkspaceContextProvider, 
+    WorkspacePrefrencesModalContextProvider,
 );

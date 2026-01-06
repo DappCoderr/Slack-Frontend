@@ -1,8 +1,10 @@
+import React from 'react';
+
+import { AlertTriangleIcon, Loader } from 'lucide-react';
+import { useParams } from 'react-router-dom';
+
 import WorkspacePanelHeader from '@/components/molecules/Workspace/WorkspacePanelHeader';
 import { useGetWorkspaceById } from '@/hooks/apis/workspace/useGetWorkspaceById';
-import { AlertTriangleIcon, Loader } from 'lucide-react';
-import React from 'react';
-import { useParams } from 'react-router-dom';
 
 const WorkspacePanel = () => {
   const { workspaceId } = useParams();
@@ -10,23 +12,23 @@ const WorkspacePanel = () => {
 
   if (isFetching) {
     return (
-      <div className="flex flex-col gap-y-2 h-full items-center justify-center text-white">
-        <Loader className="animate-spin size-6 text-white" />
+      <div className='flex flex-col gap-y-2 h-full items-center justify-center text-white'>
+        <Loader className='animate-spin size-6 text-white' />
       </div>
     );
   }
 
   if (!isSuccess) {
     return (
-      <div className="flex flex-col gap-y-2 h-full items-center justify-center text-white">
-        <AlertTriangleIcon className="size-6 text-white" />
+      <div className='flex flex-col gap-y-2 h-full items-center justify-center text-white'>
+        <AlertTriangleIcon className='size-6 text-white' />
         Something went wrong
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col h-full bg-slack-Medium">
+    <div className='flex flex-col h-full bg-slack-Medium'>
       <WorkspacePanelHeader workspace={workspace} />
     </div>
   );

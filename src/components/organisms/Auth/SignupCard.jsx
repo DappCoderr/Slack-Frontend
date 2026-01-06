@@ -1,66 +1,53 @@
 import React from 'react';
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Separator } from '@/components/ui/separator';
-import { useNavigate } from 'react-router-dom';
+
 import { LucideLoader2, TriangleAlert } from 'lucide-react';
 import { FaCheck } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
-const SignUpCard = ({
-  error,
-  isSuccess,
-  isPending,
-  validationError,
-  onSignupFormSubmit,
-  signupForm,
-  setSignupForm,
-}) => {
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
+
+const SignUpCard = ({ error, isSuccess, isPending, validationError, onSignupFormSubmit, signupForm, setSignupForm }) => {
   const navigate = useNavigate();
 
   return (
-    <Card className="w-full h-full">
+    <Card className='w-full h-full'>
       <CardHeader>
-        <CardTitle className="text-lg">Sign Up</CardTitle>
+        <CardTitle className='text-lg'>Sign Up</CardTitle>
         <CardDescription>Sign up to access your account</CardDescription>
 
         {validationError && (
-          <div className="bg-destructive/15 p-4 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6">
-            <TriangleAlert className="size-5" />
+          <div className='bg-destructive/15 p-4 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6'>
+            <TriangleAlert className='size-5' />
             <p>{validationError.message}</p>
           </div>
         )}
 
         {error && (
-          <div className="bg-destructive/15 p-4 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6">
-            <TriangleAlert className="size-5" />
+          <div className='bg-destructive/15 p-4 rounded-md flex items-center gap-x-2 text-sm text-destructive mb-6'>
+            <TriangleAlert className='size-5' />
             <p>{error.message}</p>
           </div>
         )}
 
         {isSuccess && (
-          <div className="bg-primary/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-primary mb-5">
-            <FaCheck className="size-5" />
+          <div className='bg-primary/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-primary mb-5'>
+            <FaCheck className='size-5' />
             <p>
-              Successfully signed up. You will be redirected to the login page
-              in a few seconds.
-              <LucideLoader2 className="animate-spin ml-2" />
+              Successfully signed up. You will be redirected to the login page in a few seconds.
+              <LucideLoader2 className='animate-spin ml-2' />
             </p>
           </div>
         )}
       </CardHeader>
 
       <CardContent>
-        <form className="space-y-3" onSubmit={onSignupFormSubmit}>
+        <form className='space-y-3' onSubmit={onSignupFormSubmit}>
           <Input
-            name="userName"
-            placeholder="User name"
+            name='userName'
+            placeholder='User name'
             value={signupForm.userName}
             onChange={(e) => {
               setSignupForm({ ...signupForm, userName: e.target.value });
@@ -70,9 +57,9 @@ const SignUpCard = ({
           />
 
           <Input
-            name="email"
-            type="email"
-            placeholder="Email"
+            name='email'
+            type='email'
+            placeholder='Email'
             value={signupForm.email}
             onChange={(e) => {
               setSignupForm({ ...signupForm, email: e.target.value });
@@ -82,9 +69,9 @@ const SignUpCard = ({
           />
 
           <Input
-            name="password"
-            type="password"
-            placeholder="Password"
+            name='password'
+            type='password'
+            placeholder='Password'
             value={signupForm.password}
             onChange={(e) => {
               setSignupForm({ ...signupForm, password: e.target.value });
@@ -94,9 +81,9 @@ const SignUpCard = ({
           />
 
           <Input
-            name="confirmPassword"
-            type="password"
-            placeholder="Confirm Password"
+            name='confirmPassword'
+            type='password'
+            placeholder='Confirm Password'
             value={signupForm.confirmPassword}
             onChange={(e) => {
               setSignupForm({ ...signupForm, confirmPassword: e.target.value });
@@ -104,24 +91,16 @@ const SignUpCard = ({
             required
           />
 
-          <Button
-            disabled={isPending}
-            type="submit"
-            size="lg"
-            className="w-full"
-          >
+          <Button disabled={isPending} type='submit' size='lg' className='w-full'>
             Continue
           </Button>
         </form>
 
-        <Separator className="my-5" />
+        <Separator className='my-5' />
 
-        <p className="text-sm text-muted-foreground">
+        <p className='text-sm text-muted-foreground'>
           Already have an account?{' '}
-          <span
-            className="hover:underline text-sky-600 cursor-pointer"
-            onClick={() => navigate('/auth/signin')}
-          >
+          <span className='hover:underline text-sky-600 cursor-pointer' onClick={() => navigate('/auth/signin')}>
             Sign in
           </span>
         </p>

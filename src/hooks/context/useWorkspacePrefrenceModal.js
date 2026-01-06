@@ -1,5 +1,6 @@
-import WorkspacePrefrenceModalContext from '@/context/WorkspacePrefrencesModal';
 import { useContext } from 'react';
+
+import WorkspacePrefrenceModalContext from '@/context/WorkspacePrefrencesModalContext';
 
 const useWorkspacePrefrenceModal = () => {
   return useContext(WorkspacePrefrenceModalContext);

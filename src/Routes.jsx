@@ -1,19 +1,20 @@
 import React from 'react';
+
 import { Route, Routes } from 'react-router-dom';
 
-import Auth from '@/pages/Auth/Auth';
-import NotFound from '@/pages/NotFound';
+import ProtectedRoute from '@/components/molecules/ProtectedRoute/ProtectedRoute';
 import SignInContainer from '@/components/organisms/Auth/SignInContainer';
 import SignupContainer from '@/components/organisms/Auth/SignupContainer';
-import ProtectedRoute from '@/components/molecules/ProtectedRoute/ProtectedRoute';
+import Auth from '@/pages/Auth/Auth';
 import Home from '@/pages/Home';
+import NotFound from '@/pages/NotFound';
 import WorkspaceLayout from '@/pages/Workspace/Layout';
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route
-        path="/auth/signin"
+        path='/auth/signin'
         element={
           <Auth>
             {' '}
@@ -22,7 +23,7 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/auth/signup"
+        path='/auth/signup'
         element={
           <Auth>
             <SignupContainer />
@@ -30,7 +31,7 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/home"
+        path='/home'
         element={
           <ProtectedRoute>
             <Auth>
@@ -40,14 +41,14 @@ const AppRoutes = () => {
         }
       />
       <Route
-        path="/workspaces/:workspaceId"
+        path='/workspaces/:workspaceId'
         element={
           <ProtectedRoute>
             <WorkspaceLayout />
           </ProtectedRoute>
         }
       />
-      <Route path="*" element={<NotFound />} />
+      <Route path='*' element={<NotFound />} />
     </Routes>
   );
 };

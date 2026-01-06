@@ -1,5 +1,6 @@
 import { createContext } from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
@@ -41,11 +42,12 @@ export const AuthContextProvider = ({ children }) => {
     }
   }, []);
 
+  // prettier-ignore
   return (
     <AuthContext.Provider value={{ auth, setAuth, logout }}>
       {children}
     </AuthContext.Provider>
-  );
+  )
 };
 
 export default AuthContext;

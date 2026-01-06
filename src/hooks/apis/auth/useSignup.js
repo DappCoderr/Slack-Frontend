@@ -1,14 +1,11 @@
-import { signUpRequest } from '@/apis/auth';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
+import { signUpRequest } from '@/apis/auth';
+
 export const useSignup = () => {
-  const {
-    isPending,
-    isSuccess,
-    error,
-    mutateAsync: signupMutation,
-  } = useMutation({
+  // prettier-ignore
+  const { isPending, isSuccess, error, mutateAsync: signupMutation } = useMutation({
     mutationFn: signUpRequest,
     onSuccess: (data) => {
       console.log('Signup completed successfully:', data);
@@ -19,8 +16,7 @@ export const useSignup = () => {
     onError: (error) => {
       console.log('Failed to sign up:', error);
       toast.error('Sign up failed', {
-        description:
-          error?.message || 'Something went wrong. Please try again.',
+        description: error?.message || 'Something went wrong. Please try again.',
       });
     },
   });
