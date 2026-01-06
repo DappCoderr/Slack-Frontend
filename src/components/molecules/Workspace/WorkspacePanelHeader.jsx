@@ -1,53 +1,41 @@
+import { useEffect } from 'react';
+
+import { ChevronDownIcon, ListFilterIcon, SquarePenIcon } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import useAuth from '@/hooks/context/useAuth';
 import useWorkspacePrefrenceModal from '@/hooks/context/useWorkspacePrefrenceModal';
-import { ChevronDownIcon, ListFilterIcon, SquarePenIcon } from 'lucide-react';
-import React from 'react';
 
 const WorkspacePanelHeader = ({ workspace }) => {
-  const workspaceMembers = workspace?.members;
+  
   const { auth } = useAuth();
 
-  const { setOpenPrefrenceModel, setInitialValue } =
-    useWorkspacePrefrenceModal();
+  const { setOpenPrefrenceModel, setInitialValue, setWorkspace } = useWorkspacePrefrenceModal();
 
-  const isLoggedUserAdminOfWorkspace = workspaceMembers?.find(
-    (member) =>
-      member?.userId?.id === auth?.user?.data?._id && member?.role === 'Admin'
-  );
+  const workspaceMembers = workspace?.members;
+  const isLoggedUserAdminOfWorkspace = workspaceMembers?.find((member) => member?.userId?.id === auth?.user?.data?._id && member?.role === 'Admin');
+
+  useEffect(() => {
+    setWorkspace(workspace);
+  }, []);
 
   return (
-    <div className="flex items-center justify-between px-4 h-[50px] gap-0.5">
+    <div className='flex items-center justify-between px-4 h-[50px] gap-0.5'>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant="transparent"
-            className="font-semibold text-lg w-auto p-1.5 overflow-hidden"
-          >
-            <span className="truncate">{workspace?.name}</span>
-            <ChevronDownIcon className="size-5 ml-1" />
+          <Button variant='transparent' className='font-semibold text-lg w-auto p-1.5 overflow-hidden'>
+            <span className='truncate'>{workspace?.name}</span>
+            <ChevronDownIcon className='size-5 ml-1' />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent side="bottom" align="start" className="w-64">
+        <DropdownMenuContent side='bottom' align='start' className='w-64'>
           <DropdownMenuItem>
-            <div className="size-9 relative overflow-hidden text-white font-semibold text-xl rounded-md flex items-center justify-center mr-2 bg-[#616061]">
-              {workspace?.name?.charAt(0)?.toUpperCase()}
-            </div>
-            <div className="flex flex-col items-start">
-              <p className="font-bold">{workspace?.name}</p>
-              <p className="text-xs text-muted-foreground">Active workspace</p>
+            <div className='size-9 relative overflow-hidden text-white font-semibold text-xl rounded-md flex items-center justify-center mr-2 bg-[#616061]'>{workspace?.name?.charAt(0)?.toUpperCase()}</div>
+            <div className='flex flex-col items-start'>
+              <p className='font-bold'>{workspace?.name}</p>
+              <p className='text-xs text-muted-foreground'>Active workspace</p>
             </div>
           </DropdownMenuItem>
 
@@ -62,19 +50,17 @@ const WorkspacePanelHeader = ({ workspace }) => {
                 Prefrences
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="cursor-pointer py-2">
-                Invite people to {workspace?.name}
-              </DropdownMenuItem>
+              <DropdownMenuItem className='cursor-pointer py-2'>Invite people to {workspace?.name}</DropdownMenuItem>
             </>
           )}
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <div className="flex gap-1">
+      <div className='flex gap-1'>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button variant="transparent" size="iconSm" aria-label="Filter">
-              <ListFilterIcon className="size-5" />
+            <Button variant='transparent' size='iconSm' aria-label='Filter'>
+              <ListFilterIcon className='size-5' />
             </Button>
           </TooltipTrigger>
           <TooltipContent>Filter</TooltipContent>
@@ -82,8 +68,8 @@ const WorkspacePanelHeader = ({ workspace }) => {
 
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button variant="transparent" size="iconSm" aria-label="Edit">
-              <SquarePenIcon className="size-5" />
+            <Button variant='transparent' size='iconSm' aria-label='Edit'>
+              <SquarePenIcon className='size-5' />
             </Button>
           </TooltipTrigger>
           <TooltipContent>Edit</TooltipContent>
