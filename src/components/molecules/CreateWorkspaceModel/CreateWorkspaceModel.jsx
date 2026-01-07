@@ -9,7 +9,6 @@ import { useCreateWorkspace } from '@/hooks/apis/workspace/useCreateWorkspace';
 import useCreateWorkspaceModel from '@/hooks/context/useCreateWorkspaceModel';
 
 const CreateWorkspaceModel = () => {
-
   const [workspaceName, setWorkspaceName] = useState('');
 
   const { openCreateWorkspaceModel, setOpenCreateWorkspaceModel } = useCreateWorkspaceModel();

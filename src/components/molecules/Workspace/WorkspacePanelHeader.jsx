@@ -9,7 +9,6 @@ import useAuth from '@/hooks/context/useAuth';
 import useWorkspacePrefrenceModal from '@/hooks/context/useWorkspacePrefrenceModal';
 
 const WorkspacePanelHeader = ({ workspace }) => {
-  
   const { auth } = useAuth();
 
   const { setOpenPrefrenceModel, setInitialValue, setWorkspace } = useWorkspacePrefrenceModal();
