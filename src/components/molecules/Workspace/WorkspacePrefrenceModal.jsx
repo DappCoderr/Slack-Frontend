@@ -44,7 +44,7 @@ const WorkspacePrefrenceModal = () => {
     e.preventDefault();
     try {
       await updateWorkspaceMutation(renameValue);
-      queryClient.invalidateQueries('fetchWorkspaces');
+      queryClient.invalidateQueries(`fetchWorkspaceById-${workspace?._id}`);
       setOpenPrefrenceModel(false);
       toast.success('Successfully Updated Workspace name');
     } catch (error) {
