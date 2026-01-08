@@ -43,7 +43,7 @@ const WorkspacePrefrenceModal = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      await updateWorkspaceMutation({ name: renameValue });
+      await updateWorkspaceMutation(renameValue);
       queryClient.invalidateQueries('fetchWorkspaces');
       setOpenPrefrenceModel(false);
       toast.success('Successfully Updated Workspace name');
