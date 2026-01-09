@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { AlertTriangleIcon, Loader, MessageSquareTextIcon } from 'lucide-react';
+import { AlertTriangleIcon, HashIcon, Loader, MessageSquareTextIcon, SendHorizonalIcon } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 
 import SidebarItem from '@/components/atoms/SidebarItem/SidebarItem';
 import WorkspacePanelHeader from '@/components/molecules/Workspace/WorkspacePanelHeader';
+import WorkspacePanelSection from '@/components/molecules/Workspace/WorkspacePanelSection';
 import { useGetWorkspaceById } from '@/hooks/apis/workspace/useGetWorkspaceById';
 
 const WorkspacePanel = () => {
@@ -32,7 +33,13 @@ const WorkspacePanel = () => {
     <div className='flex flex-col h-full bg-slack-Medium text-white'>
       <WorkspacePanelHeader workspace={workspace} />
       <div className='px-3 py-2 overflow-y-auto flex-1'>
-        <SidebarItem label={'Threads'} icon={MessageSquareTextIcon} id={'threads'} variant={"active"} />
+        <SidebarItem label={'Threads'} icon={MessageSquareTextIcon} id={'threads'} variant={'active'} />
+        <SidebarItem label={'Draft & Sends'} icon={SendHorizonalIcon} id={'draft and send'} variant={'default'} />
+        <WorkspacePanelSection label={'channels'} onIconClick={() => {}}>
+          {workspace?.channels?.map((channel) => (
+            <SidebarItem key={channel._id} label={channel?.name} icon={HashIcon} id={channel?._id} variant={'default'} />
+          ))}
+        </WorkspacePanelSection>
       </div>
     </div>
   );
