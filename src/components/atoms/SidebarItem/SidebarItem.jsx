@@ -20,9 +20,11 @@ const SidebarItem = ({ label, id, icon: Icon, variant }) => {
   const { workspaceId } = useParams();
   return (
     <Button variant='transparent' size='sm' className={cn(sidebarItemVariable({ variant }))}>
-      <Link className='flex items-center gap-1.5' to={`/workspaces/${workspaceId}/channels/${id}`}>
-        <Icon className='size-3.5 mr-1' />
-        <span className='text-sm'>{label}</span>
+      <Link to={`/workspaces/${workspaceId}/channels/${id}`} className='flex items-center gap-1.5 w-full'>
+        <span className='w-5 flex justify-center'>
+          <Icon className='size-3.5' />
+        </span>
+        <span className='text-sm truncate'>{label}</span>
       </Link>
     </Button>
   );
