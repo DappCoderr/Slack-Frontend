@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
@@ -7,7 +8,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Input } from '@/components/ui/input';
 import { useCreateWorkspace } from '@/hooks/apis/workspace/useCreateWorkspace';
 import useCreateWorkspaceModel from '@/hooks/context/useCreateWorkspaceModel';
-import { useQueryClient } from '@tanstack/react-query';
 
 const CreateWorkspaceModel = () => {
   const [workspaceName, setWorkspaceName] = useState('');
@@ -18,7 +18,7 @@ const CreateWorkspaceModel = () => {
 
   const navigate = useNavigate();
 
-  const queryClient = useQueryClient
+  const queryClient = useQueryClient;
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
