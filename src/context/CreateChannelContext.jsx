@@ -6,6 +6,8 @@ const CreateChannelContext = createContext();
 
 export const CreateChannelContextProvider = ({ children }) => {
   const [openCreateChannelModal, setOpenCreateChannelModal] = useState(second);
+
+  // prettier-ignore
   return (
     <CreateChannelContext.Provider value={{ openCreateChannelModal, setOpenCreateChannelModal }}>
         {children}
