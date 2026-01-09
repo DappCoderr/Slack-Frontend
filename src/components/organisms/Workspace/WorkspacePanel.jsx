@@ -7,10 +7,16 @@ import SidebarItem from '@/components/atoms/SidebarItem/SidebarItem';
 import WorkspacePanelHeader from '@/components/molecules/Workspace/WorkspacePanelHeader';
 import WorkspacePanelSection from '@/components/molecules/Workspace/WorkspacePanelSection';
 import { useGetWorkspaceById } from '@/hooks/apis/workspace/useGetWorkspaceById';
+import useCreateChannelModal from '@/hooks/context/useCreateChannelModal';
 
 const WorkspacePanel = () => {
   const { workspaceId } = useParams();
   const { workspace, isFetching, isSuccess } = useGetWorkspaceById(workspaceId);
+  const { openCreateChannelModal, setOpenCreateChannelModal } = useCreateChannelModal();
+
+  const handleChannelModal = () => {
+    setOpenCreateChannelModal(true);
+  };
 
   if (isFetching) {
     return (
@@ -35,7 +41,7 @@ const WorkspacePanel = () => {
       <div className='px-3 py-2 overflow-y-auto flex-1'>
         <SidebarItem label={'Threads'} icon={MessageSquareTextIcon} id={'threads'} variant={'active'} />
         <SidebarItem label={'Draft & Sends'} icon={SendHorizonalIcon} id={'draft and send'} variant={'default'} />
-        <WorkspacePanelSection label={'channels'} onIconClick={() => {}}>
+        <WorkspacePanelSection label={'channels'} onIconClick={handleChannelModal}>
           {workspace?.channels?.map((channel) => (
             <SidebarItem key={channel._id} label={channel?.name} icon={HashIcon} id={channel?._id} variant={'default'} />
           ))}
