@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
+import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
 import useCreateChannelModal from '@/hooks/context/useCreateChannelModal';
 
 const CreateChannelModal = () => {
@@ -23,12 +25,10 @@ const CreateChannelModal = () => {
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <form className='space-y-4' onSubmit={handleFormSubmit}>
-          <Input disabled={isPending} required minLength={3} placeholder='Channel name (e.g. Welcome)' value={channelName} onChange={(e) => setChannelName(e.target.value)} />
+          <Input required minLength={3} placeholder='Channel name (e.g. Welcome)' value={channelName} onChange={(e) => setChannelName(e.target.value)} />
 
           <div className='flex justify-end mt-4'>
-            <Button type='submit' disabled={isPending}>
-              Create
-            </Button>
+            <Button type='submit'>Create</Button>
           </div>
         </form>
       </DialogContent>
