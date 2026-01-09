@@ -23,6 +23,7 @@ const WorkspacePrefrenceModal = () => {
   const { isPending, isSuccess, error, updateWorkspaceMutation } = useUpdateWorkspace(workspaceId);
   const [renameValue, setRenameValue] = useState(workspace?.name);
   const { ConfirmDialog, confimation } = useConfirm({ title: 'Do you want to delete the workspace?', message: 'This action cannot be undone' });
+  const { ConfirmDialog: UpdateConfirmDialog, confimation: updateConfirmation } = useConfirm({ title: 'Do you want to update the workspace name?', message: 'This action cannot be undone' });
 
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -49,6 +50,10 @@ const WorkspacePrefrenceModal = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
+      const ok = await updateConfirmation();
+      if (!ok) {
+        return;
+      }
       await updateWorkspaceMutation(renameValue);
       queryClient.invalidateQueries(`fetchWorkspaceById-${workspace?._id}`);
       setOpenPrefrenceModel(false);
@@ -69,6 +74,7 @@ const WorkspacePrefrenceModal = () => {
   return (
     <>
     <ConfirmDialog/>
+    <UpdateConfirmDialog/>
     <Dialog open={openPrefrenceModel} onOpenChange={setOpenPrefrenceModel}>
     <DialogContent className="p-0 bg-gray-50 overflow-hidden">
       <DialogHeader className="p-4 border-b bg-white">
