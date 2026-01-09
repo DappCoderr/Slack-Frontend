@@ -1,11 +1,9 @@
-import { useState } from 'react';
-
-import { createContext } from 'react-router-dom';
+import { createContext, useState } from 'react';
 
 const CreateChannelContext = createContext();
 
 export const CreateChannelContextProvider = ({ children }) => {
-  const [openCreateChannelModal, setOpenCreateChannelModal] = useState(second);
+  const [openCreateChannelModal, setOpenCreateChannelModal] = useState(false);
 
   // prettier-ignore
   return (

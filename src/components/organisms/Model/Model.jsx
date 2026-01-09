@@ -8,6 +8,7 @@ const Model = () => {
     <>
       <CreateWorkspaceModel />
       <WorkspacePrefrenceModal />
+      <CreateChannelModal />
     </>
   );
 };
