@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input';
 import { useDeleteWorkspace } from '@/hooks/apis/workspace/useDeleteWorkspace';
 import { useUpdateWorkspace } from '@/hooks/apis/workspace/useUpdateWorkspace';
 import useWorkspacePrefrenceModal from '@/hooks/context/useWorkspacePrefrenceModal';
+import useConfirm from '@/hooks/useConfirm';
 
 const WorkspacePrefrenceModal = () => {
   const [workspaceId, setWorkspaceId] = useState(null);
@@ -21,12 +22,17 @@ const WorkspacePrefrenceModal = () => {
   const { deleteWorkspaceMutaion } = useDeleteWorkspace(workspaceId);
   const { isPending, isSuccess, error, updateWorkspaceMutation } = useUpdateWorkspace(workspaceId);
   const [renameValue, setRenameValue] = useState(workspace?.name);
+  const { ConfirmDialog, confimation } = useConfirm({ title: 'Do you want to delete the workspace?', message: 'This action cannot be undone' });
 
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const handleDeleteWorkspace = async () => {
     try {
+      const ok = await confimation();
+      if (!ok) {
+        return;
+      }
       await deleteWorkspaceMutaion();
       navigate('/home');
       queryClient.invalidateQueries('fetchWorkspaces');
@@ -61,7 +67,9 @@ const WorkspacePrefrenceModal = () => {
 
   // prettier-ignore
   return (
-  <Dialog open={openPrefrenceModel} onOpenChange={setOpenPrefrenceModel}>
+    <>
+    <ConfirmDialog/>
+    <Dialog open={openPrefrenceModel} onOpenChange={setOpenPrefrenceModel}>
     <DialogContent className="p-0 bg-gray-50 overflow-hidden">
       <DialogHeader className="p-4 border-b bg-white">
         <DialogTitle>Preferences</DialogTitle>
@@ -127,7 +135,8 @@ const WorkspacePrefrenceModal = () => {
         </Button>
       </div>
     </DialogContent>
-  </Dialog>
+    </Dialog>
+  </>
 );
 };
 
