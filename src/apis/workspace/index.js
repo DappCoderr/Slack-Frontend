@@ -78,3 +78,39 @@ export const updateWorkspaceRequest = async ({ workspaceId, name, token }) => {
     throw error.response.data;
   }
 };
+
+export const addChannelToWorkspace = async ({ workspaceId, channelName, token }) => {
+  try {
+    const response = await apis.post(
+      `/workspaces/${workspaceId}/channels`,
+      { channelName },
+      {
+        headers: {
+          'x-access-token': token,
+        },
+      }
+    );
+    return response?.data?.data;
+  } catch (error) {
+    console.log('Error in adding channel to workspace', error);
+    throw error.response.data;
+  }
+};
+
+export const addMemberToWorkspace = async ({ workspaceId, memberId, role, token }) => {
+  try {
+    const response = await apis.post(
+      `/workspaces/${workspaceId}/members`,
+      { memberId, role },
+      {
+        headers: {
+          'x-access-token': token,
+        },
+      }
+    );
+    return response?.data?.data;
+  } catch (error) {
+    console.log('Error in adding member to workspace request', error);
+    throw error.response.data;
+  }
+};
