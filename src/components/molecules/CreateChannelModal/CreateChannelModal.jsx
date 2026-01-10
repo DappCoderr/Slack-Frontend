@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -8,7 +9,6 @@ import { Input } from '@/components/ui/input';
 import { useAddChannelToWorkspace } from '@/hooks/apis/workspace/useAddChannelToWorkspace';
 import useCreateChannelModal from '@/hooks/context/useCreateChannelModal';
 import useCurrentWorkspace from '@/hooks/context/useCurrentWorkspace';
-import { toast } from 'sonner';
 
 const CreateChannelModal = () => {
   const { openCreateChannelModal, setOpenCreateChannelModal } = useCreateChannelModal();
@@ -27,11 +27,11 @@ const CreateChannelModal = () => {
     e.preventDefault();
     try {
       await addChannelToWorkspaceMutation({ workspaceId: currentWorkspace?._id, channelName: channelName });
-      toast.success("Channel created successfully")
+      toast.success('Channel created successfully');
       queryClient.invalidateQueries(`fetchWorkspaceById-${currentWorkspace?._id}`);
     } catch (error) {
       console.log('Not able to add channel to workspace: ', error);
-      toast.error("Channel creation failed")
+      toast.error('Channel creation failed');
     } finally {
       setOpenCreateChannelModal(false);
       setChannelName('');
