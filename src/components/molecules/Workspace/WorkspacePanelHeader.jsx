@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ChevronDownIcon, ListFilterIcon, SquarePenIcon } from 'lucide-react';
 
+import WorkspaceInviteModal from '@/components/organisms/Model/WorkspaceInviteModal';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
@@ -11,6 +12,7 @@ import useWorkspacePrefrenceModal from '@/hooks/context/useWorkspacePrefrenceMod
 const WorkspacePanelHeader = ({ workspace }) => {
   const { auth } = useAuth();
 
+  const [openInviteModal, setOpenInviteModal] = useState(false);
   const { setOpenPrefrenceModel, setInitialValue, setWorkspace } = useWorkspacePrefrenceModal();
 
   const workspaceMembers = workspace?.members;
@@ -21,60 +23,70 @@ const WorkspacePanelHeader = ({ workspace }) => {
   }, []);
 
   return (
-    <div className='flex items-center justify-between px-4 h-[50px] gap-0.5'>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant='transparent' className='font-semibold text-lg w-auto p-1.5 overflow-hidden'>
-            <span className='truncate'>{workspace?.name}</span>
-            <ChevronDownIcon className='size-5 ml-1' />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent side='bottom' align='start' className='w-64'>
-          <DropdownMenuItem>
-            <div className='size-9 relative overflow-hidden text-white font-semibold text-xl rounded-md flex items-center justify-center mr-2 bg-[#616061]'>{workspace?.name?.charAt(0)?.toUpperCase()}</div>
-            <div className='flex flex-col items-start'>
-              <p className='font-bold'>{workspace?.name}</p>
-              <p className='text-xs text-muted-foreground'>Active workspace</p>
-            </div>
-          </DropdownMenuItem>
-
-          {isLoggedUserAdminOfWorkspace && (
-            <>
-              <DropdownMenuItem
-                onClick={() => {
-                  setOpenPrefrenceModel(true);
-                  setInitialValue(workspace?.name);
-                }}
-              >
-                Prefrences
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem className='cursor-pointer py-2'>Invite people to {workspace?.name}</DropdownMenuItem>
-            </>
-          )}
-        </DropdownMenuContent>
-      </DropdownMenu>
-
-      <div className='flex gap-1'>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant='transparent' size='iconSm' aria-label='Filter'>
-              <ListFilterIcon className='size-5' />
+    <>
+      <WorkspaceInviteModal openInviteModal={openInviteModal} setOpenInviteModal={setOpenInviteModal} workspaceName={workspace?.name} joinCode={workspace?.joinCode} />
+      <div className='flex items-center justify-between px-4 h-[50px] gap-0.5'>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant='transparent' className='font-semibold text-lg w-auto p-1.5 overflow-hidden'>
+              <span className='truncate'>{workspace?.name}</span>
+              <ChevronDownIcon className='size-5 ml-1' />
             </Button>
-          </TooltipTrigger>
-          <TooltipContent>Filter</TooltipContent>
-        </Tooltip>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent side='bottom' align='start' className='w-64'>
+            <DropdownMenuItem>
+              <div className='size-9 relative overflow-hidden text-white font-semibold text-xl rounded-md flex items-center justify-center mr-2 bg-[#616061]'>{workspace?.name?.charAt(0)?.toUpperCase()}</div>
+              <div className='flex flex-col items-start'>
+                <p className='font-bold'>{workspace?.name}</p>
+                <p className='text-xs text-muted-foreground'>Active workspace</p>
+              </div>
+            </DropdownMenuItem>
 
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant='transparent' size='iconSm' aria-label='Edit'>
-              <SquarePenIcon className='size-5' />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>Edit</TooltipContent>
-        </Tooltip>
+            {isLoggedUserAdminOfWorkspace && (
+              <>
+                <DropdownMenuItem
+                  onClick={() => {
+                    setOpenPrefrenceModel(true);
+                    setInitialValue(workspace?.name);
+                  }}
+                >
+                  Prefrences
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  className='cursor-pointer py-2'
+                  onClick={() => {
+                    setOpenInviteModal(true);
+                  }}
+                >
+                  Invite people to {workspace?.name}
+                </DropdownMenuItem>
+              </>
+            )}
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <div className='flex gap-1'>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant='transparent' size='iconSm' aria-label='Filter'>
+                <ListFilterIcon className='size-5' />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Filter</TooltipContent>
+          </Tooltip>
+
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant='transparent' size='iconSm' aria-label='Edit'>
+                <SquarePenIcon className='size-5' />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Edit</TooltipContent>
+          </Tooltip>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
