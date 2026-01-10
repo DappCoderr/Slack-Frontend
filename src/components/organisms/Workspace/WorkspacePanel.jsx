@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AlertTriangleIcon, HashIcon, Loader, MessageSquareTextIcon, SendHorizonalIcon } from 'lucide-react';
+import { AlertTriangleIcon, HashIcon, Loader, MessageSquareTextIcon, SendHorizonalIcon, UserRound } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 
 import SidebarItem from '@/components/atoms/SidebarItem/SidebarItem';
@@ -44,6 +44,12 @@ const WorkspacePanel = () => {
         <WorkspacePanelSection label={'channels'} onIconClick={handleChannelModal}>
           {workspace?.channels?.map((channel) => (
             <SidebarItem key={channel._id} label={channel?.name} icon={HashIcon} id={channel?._id} variant={'default'} />
+          ))}
+        </WorkspacePanelSection>
+
+        <WorkspacePanelSection label={'members'} onIconClick={handleChannelModal}>
+          {workspace?.members?.map((member) => (
+            <SidebarItem key={member?.userId?._id} label={member?.userId?.username} icon={UserRound} id={member?.userId?._id} variant={'default'} />
           ))}
         </WorkspacePanelSection>
       </div>
