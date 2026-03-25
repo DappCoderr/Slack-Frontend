@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { CopyCheck, CopyIcon } from 'lucide-react';
+import { CopyCheck, CopyIcon, RefreshCcwDotIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
@@ -19,6 +19,8 @@ const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, workspaceNa
     }, 5000);
   };
 
+  const handleReset = async () => {};
+
   return (
     <Dialog open={openInviteModal} onOpenChange={setOpenInviteModal}>
       <DialogContent>
@@ -26,10 +28,15 @@ const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, workspaceNa
           <DialogTitle>Invite people to {workspaceName}</DialogTitle>
           <DialogDescription>Use the below code to invite </DialogDescription>
         </DialogHeader>
-        <div className='flex flex-col items-center justify-center py-10 gap-y-4'>
-          <p>{joinCode}</p>
+        <div className='flex flex-col items-center justify-center gap-y-4'>
+          <p className='font-bold text-4xl uppercase'>{joinCode}</p>
           <Button size='sm' variant='ghost' onClick={handleCopy}>
             Copy Link {copied ? <CopyCheck className='size-4 ml-2' /> : <CopyIcon className='size-4 ml-2' />}
+          </Button>
+        </div>
+        <div className='flex items-center justify-center'>
+          <Button size='sm' variant='ghost' onClick={handleReset}>
+            Reset Join Code <RefreshCcwDotIcon />
           </Button>
         </div>
       </DialogContent>
