@@ -114,3 +114,17 @@ export const addMemberToWorkspace = async ({ workspaceId, memberId, role, token 
     throw error.response.data;
   }
 };
+
+export const resetJoinCodeRequest = async({workspaceId, token}) => {
+  try {
+    const response = await apis.put(`/workspaces/${workspaceId}/joinCode/reset`, {}, {
+      headers: {
+          'x-access-token': token,
+        },
+    })
+    return response?.data?.data;
+  } catch (error) {
+    console.log('Error while reset join code request', error);
+    throw error.response.data;
+  }
+}
