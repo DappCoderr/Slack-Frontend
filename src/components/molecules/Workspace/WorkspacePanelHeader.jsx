@@ -16,7 +16,13 @@ const WorkspacePanelHeader = ({ workspace }) => {
   const { setOpenPrefrenceModel, setInitialValue, setWorkspace } = useWorkspacePrefrenceModal();
 
   const workspaceMembers = workspace?.members;
-  const isLoggedUserAdminOfWorkspace = workspaceMembers?.find((member) => member?.userId?.id === auth?.user?.data?._id && member?.role === 'Admin');
+  const loggedInUserId = auth?.user?.data?._id?.toString() || auth?.user?.data?.id?.toString();
+
+  const isLoggedUserAdminOfWorkspace = workspaceMembers?.some((member) => {
+    const memberId = (member?.userId?._id || member?.userId)?.toString();
+
+    return memberId === loggedInUserId && member?.role === 'Admin';
+  });
 
   useEffect(() => {
     setWorkspace(workspace);
@@ -24,7 +30,7 @@ const WorkspacePanelHeader = ({ workspace }) => {
 
   return (
     <>
-      <WorkspaceInviteModal openInviteModal={openInviteModal} setOpenInviteModal={setOpenInviteModal} workspaceName={workspace?.name} joinCode={workspace?.joinCode} />
+      <WorkspaceInviteModal openInviteModal={openInviteModal} setOpenInviteModal={setOpenInviteModal} workspaceName={workspace?.name} joinCode={workspace?.joinCode} workspaceId={workspace?._id} />
       <div className='flex items-center justify-between px-4 h-[50px] gap-0.5'>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

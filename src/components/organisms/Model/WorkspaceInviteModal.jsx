@@ -5,9 +5,12 @@ import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { useResetJoinCode } from '@/hooks/apis/workspace/useResetJoinCode';
 
-const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, workspaceName, joinCode }) => {
+const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, workspaceName, joinCode, workspaceId }) => {
   const [copied, setCopied] = useState(false);
+
+  const { resetJoinCodeMutation } = useResetJoinCode(workspaceId);
 
   const handleCopy = async () => {
     const inviteLink = `${window.location.origin}/join/${joinCode}`;
@@ -19,7 +22,14 @@ const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, workspaceNa
     }, 5000);
   };
 
-  const handleReset = async () => {};
+  const handleResetJoinCode = async () => {
+    try {
+      await resetJoinCodeMutation();
+      toast.success('Join Code reset successfully');
+    } catch (error) {
+      console.log(`Error is resetting the join code: `, error);
+    }
+  };
 
   return (
     <Dialog open={openInviteModal} onOpenChange={setOpenInviteModal}>
@@ -35,7 +45,7 @@ const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, workspaceNa
           </Button>
         </div>
         <div className='flex items-center justify-center'>
-          <Button size='sm' variant='ghost' onClick={handleReset}>
+          <Button size='sm' variant='ghost' onClick={handleResetJoinCode}>
             Reset Join Code <RefreshCcwDotIcon />
           </Button>
         </div>
