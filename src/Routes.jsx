@@ -8,6 +8,7 @@ import SignupContainer from '@/components/organisms/Auth/SignupContainer';
 import Auth from '@/pages/Auth/Auth';
 import Home from '@/pages/Home';
 import NotFound from '@/pages/NotFound';
+import JoinPage from '@/pages/Workspace/JoinPage';
 import WorkspaceLayout from '@/pages/Workspace/Layout';
 
 // prettier-ignore
@@ -39,6 +40,7 @@ const AppRoutes = () => {
           <ProtectedRoute>
             Channel
           </ProtectedRoute>} />
+      <Route path='workspace/join/:workspaceId' element={<JoinPage />}/> 
       <Route path='*' element={<NotFound />} />
     </Routes>
   );

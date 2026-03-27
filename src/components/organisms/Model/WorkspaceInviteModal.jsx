@@ -7,13 +7,15 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useResetJoinCode } from '@/hooks/apis/workspace/useResetJoinCode';
 
+// import { useParams } from 'react-router-dom';
+
 const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, workspaceName, joinCode, workspaceId }) => {
   const [copied, setCopied] = useState(false);
-
+  // const {workspaceId} = useParams()
   const { resetJoinCodeMutation } = useResetJoinCode(workspaceId);
 
   const handleCopy = async () => {
-    const inviteLink = `${window.location.origin}/join/${joinCode}`;
+    const inviteLink = `${joinCode}`;
     await navigator.clipboard.writeText(inviteLink);
     setCopied(true);
     toast.success('Join Code is copied');
@@ -43,6 +45,9 @@ const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, workspaceNa
           <Button size='sm' variant='ghost' onClick={handleCopy}>
             Copy Link {copied ? <CopyCheck className='size-4 ml-2' /> : <CopyIcon className='size-4 ml-2' />}
           </Button>
+          <a href={`/workspace/join/${workspaceId}`} target='_blank' rel='noreferrer' className='text-blue-500'>
+            Redirect to join workspace
+          </a>
         </div>
         <div className='flex items-center justify-center'>
           <Button size='sm' variant='ghost' onClick={handleResetJoinCode}>
