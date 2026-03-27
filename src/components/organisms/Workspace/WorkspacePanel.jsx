@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { AlertTriangleIcon, HashIcon, Loader, MessageSquareTextIcon, SendHorizonalIcon, UserRound } from 'lucide-react';
+import {
+  AlertTriangleIcon,
+  HashIcon,
+  Loader,
+  MessageSquareTextIcon,
+  SendHorizonalIcon,
+  UserRound,
+} from 'lucide-react';
 import { useParams } from 'react-router-dom';
 
 import SidebarItem from '@/components/atoms/SidebarItem/SidebarItem';
@@ -39,17 +46,39 @@ const WorkspacePanel = () => {
     <div className='flex flex-col h-full bg-slack-Medium text-white'>
       <WorkspacePanelHeader workspace={workspace} />
       <div className='px-3 py-2 overflow-y-auto flex-1'>
-        <SidebarItem label={'Threads'} icon={MessageSquareTextIcon} id={'threads'} variant={'active'} />
-        <SidebarItem label={'Draft & Sends'} icon={SendHorizonalIcon} id={'draft and send'} variant={'default'} />
+        <SidebarItem
+          label={'Threads'}
+          icon={MessageSquareTextIcon}
+          id={'threads'}
+          variant={'active'}
+        />
+        <SidebarItem
+          label={'Draft & Sends'}
+          icon={SendHorizonalIcon}
+          id={'draft and send'}
+          variant={'default'}
+        />
         <WorkspacePanelSection label={'channels'} onIconClick={handleChannelModal}>
           {workspace?.channels?.map((channel) => (
-            <SidebarItem key={channel._id} label={channel?.name} icon={HashIcon} id={channel?._id} variant={'default'} />
+            <SidebarItem
+              key={channel._id}
+              label={channel?.name}
+              icon={HashIcon}
+              id={channel?._id}
+              variant={'default'}
+            />
           ))}
         </WorkspacePanelSection>
 
         <WorkspacePanelSection label={'members'} onIconClick={handleChannelModal}>
           {workspace?.members?.map((member) => (
-            <SidebarItem key={member?.userId?._id} label={member?.userId?.username} icon={UserRound} id={member?.userId?._id} variant={'default'} />
+            <SidebarItem
+              key={member?.userId?._id}
+              label={member?.userId?.username}
+              icon={UserRound}
+              id={member?.userId?._id}
+              variant={'default'}
+            />
           ))}
         </WorkspacePanelSection>
       </div>

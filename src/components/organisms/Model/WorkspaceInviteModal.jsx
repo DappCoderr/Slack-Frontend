@@ -4,14 +4,23 @@ import { CopyCheck, CopyIcon, RefreshCcwDotIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import { useResetJoinCode } from '@/hooks/apis/workspace/useResetJoinCode';
 
-// import { useParams } from 'react-router-dom';
-
-const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, workspaceName, joinCode, workspaceId }) => {
+const WorkspaceInviteModal = ({
+  openInviteModal,
+  setOpenInviteModal,
+  workspaceName,
+  joinCode,
+  workspaceId,
+}) => {
   const [copied, setCopied] = useState(false);
-  // const {workspaceId} = useParams()
   const { resetJoinCodeMutation } = useResetJoinCode(workspaceId);
 
   const handleCopy = async () => {
@@ -43,9 +52,15 @@ const WorkspaceInviteModal = ({ openInviteModal, setOpenInviteModal, workspaceNa
         <div className='flex flex-col items-center justify-center gap-y-4'>
           <p className='font-bold text-4xl uppercase'>{joinCode}</p>
           <Button size='sm' variant='ghost' onClick={handleCopy}>
-            Copy Link {copied ? <CopyCheck className='size-4 ml-2' /> : <CopyIcon className='size-4 ml-2' />}
+            Copy Link{' '}
+            {copied ? <CopyCheck className='size-4 ml-2' /> : <CopyIcon className='size-4 ml-2' />}
           </Button>
-          <a href={`/workspace/join/${workspaceId}`} target='_blank' rel='noreferrer' className='text-blue-500'>
+          <a
+            href={`/workspace/join/${workspaceId}`}
+            target='_blank'
+            rel='noreferrer'
+            className='text-blue-500'
+          >
             Redirect to join workspace
           </a>
         </div>

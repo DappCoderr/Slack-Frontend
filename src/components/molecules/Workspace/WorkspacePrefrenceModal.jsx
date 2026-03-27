@@ -6,7 +6,16 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { useDeleteWorkspace } from '@/hooks/apis/workspace/useDeleteWorkspace';
 import { useUpdateWorkspace } from '@/hooks/apis/workspace/useUpdateWorkspace';
@@ -17,13 +26,20 @@ const WorkspacePrefrenceModal = () => {
   const [workspaceId, setWorkspaceId] = useState(null);
   const [editOpen, setEditOpen] = useState(false);
 
-  const { initialValue, openPrefrenceModel, setOpenPrefrenceModel, workspace } = useWorkspacePrefrenceModal();
+  const { initialValue, openPrefrenceModel, setOpenPrefrenceModel, workspace } =
+    useWorkspacePrefrenceModal();
 
   const { deleteWorkspaceMutaion } = useDeleteWorkspace(workspaceId);
   const { isPending, isSuccess, error, updateWorkspaceMutation } = useUpdateWorkspace(workspaceId);
   const [renameValue, setRenameValue] = useState(workspace?.name);
-  const { ConfirmDialog, confimation } = useConfirm({ title: 'Do you want to delete the workspace?', message: 'This action cannot be undone' });
-  const { ConfirmDialog: UpdateConfirmDialog, confimation: updateConfirmation } = useConfirm({ title: 'Do you want to update the workspace name?', message: 'This action cannot be undone' });
+  const { ConfirmDialog, confimation } = useConfirm({
+    title: 'Do you want to delete the workspace?',
+    message: 'This action cannot be undone',
+  });
+  const { ConfirmDialog: UpdateConfirmDialog, confimation: updateConfirmation } = useConfirm({
+    title: 'Do you want to update the workspace name?',
+    message: 'This action cannot be undone',
+  });
 
   const queryClient = useQueryClient();
   const navigate = useNavigate();

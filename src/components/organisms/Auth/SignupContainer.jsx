@@ -27,7 +27,12 @@ const SignupContainer = () => {
     console.log('signup username', signupForm.userName);
     console.log('sign password', signupForm.password);
 
-    if (!signupForm.email || !signupForm.password || !signupForm.confirmPassword || !signupForm.userName) {
+    if (
+      !signupForm.email ||
+      !signupForm.password ||
+      !signupForm.confirmPassword ||
+      !signupForm.userName
+    ) {
       console.error('All fields are required');
       setValidationError({ message: 'All fields are required' });
       return;
@@ -56,7 +61,17 @@ const SignupContainer = () => {
     }
   }, [isSuccess, navigate]);
 
-  return <SignUpCard error={error} isSuccess={isSuccess} isPending={isPending} validationError={validationError} signupForm={signupForm} setSignupForm={setSignupForm} onSignupFormSubmit={onSignupFormSubmit} />;
+  return (
+    <SignUpCard
+      error={error}
+      isSuccess={isSuccess}
+      isPending={isPending}
+      validationError={validationError}
+      signupForm={signupForm}
+      setSignupForm={setSignupForm}
+      onSignupFormSubmit={onSignupFormSubmit}
+    />
+  );
 };
 
 export default SignupContainer;

@@ -43,7 +43,17 @@ const SignInContainer = () => {
     }
   }, [isSuccess, navigate]);
 
-  return <SignInCard isPending={isPending} isSuccess={isSuccess} error={error} validationError={validationError} onSigninFormSubmit={onSigninFormSubmit} signInForm={signInForm} setSignInForm={setSignInForm} />;
+  return (
+    <SignInCard
+      isPending={isPending}
+      isSuccess={isSuccess}
+      error={error}
+      validationError={validationError}
+      onSigninFormSubmit={onSigninFormSubmit}
+      signInForm={signInForm}
+      setSignInForm={setSignInForm}
+    />
+  );
 };
 
 export default SignInContainer;

@@ -7,7 +7,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 
-const SignInCard = ({ isPending, isSuccess, error, validationError, onSigninFormSubmit, signInForm, setSignInForm }) => {
+const SignInCard = ({
+  isPending,
+  isSuccess,
+  error,
+  validationError,
+  onSigninFormSubmit,
+  signInForm,
+  setSignInForm,
+}) => {
   const navigate = useNavigate();
   return (
     <Card>
@@ -71,7 +79,10 @@ const SignInCard = ({ isPending, isSuccess, error, validationError, onSigninForm
 
         <p className='text-sm text-muted-foreground'>
           Don't have an account?{' '}
-          <span className='hover:underline text-sky-600 cursor-pointer' onClick={() => navigate('/auth/signup')}>
+          <span
+            className='hover:underline text-sky-600 cursor-pointer'
+            onClick={() => navigate('/auth/signup')}
+          >
             Sign up
           </span>
         </p>

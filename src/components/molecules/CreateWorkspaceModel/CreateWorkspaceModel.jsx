@@ -43,7 +43,14 @@ const CreateWorkspaceModel = () => {
         </DialogHeader>
 
         <form className='space-y-4' onSubmit={handleFormSubmit}>
-          <Input disabled={isPending} required minLength={3} placeholder='Workspace name (e.g. MyWorkspace, Blockchain)' value={workspaceName} onChange={(e) => setWorkspaceName(e.target.value)} />
+          <Input
+            disabled={isPending}
+            required
+            minLength={3}
+            placeholder='Workspace name (e.g. MyWorkspace, Blockchain)'
+            value={workspaceName}
+            onChange={(e) => setWorkspaceName(e.target.value)}
+          />
 
           <div className='flex justify-end'>
             <Button type='submit' disabled={isPending}>

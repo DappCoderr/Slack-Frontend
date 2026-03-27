@@ -4,7 +4,13 @@ import { useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { useAddChannelToWorkspace } from '@/hooks/apis/workspace/useAddChannelToWorkspace';
 import useCreateChannelModal from '@/hooks/context/useCreateChannelModal';
@@ -26,7 +32,10 @@ const CreateChannelModal = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addChannelToWorkspaceMutation({ workspaceId: currentWorkspace?._id, channelName: channelName });
+      await addChannelToWorkspaceMutation({
+        workspaceId: currentWorkspace?._id,
+        channelName: channelName,
+      });
       toast.success('Channel created successfully');
       queryClient.invalidateQueries(`fetchWorkspaceById-${currentWorkspace?._id}`);
     } catch (error) {
@@ -46,7 +55,13 @@ const CreateChannelModal = () => {
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <form className='space-y-4' onSubmit={handleFormSubmit}>
-          <Input required minLength={3} placeholder='Channel name (e.g. Welcome)' value={channelName} onChange={(e) => setChannelName(e.target.value)} />
+          <Input
+            required
+            minLength={3}
+            placeholder='Channel name (e.g. Welcome)'
+            value={channelName}
+            onChange={(e) => setChannelName(e.target.value)}
+          />
 
           <div className='flex justify-end mt-4'>
             <Button disabled={isPending} type='submit'>

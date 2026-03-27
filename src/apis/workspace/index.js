@@ -1,6 +1,10 @@
 import apis from '@/config/axiosConfig';
 
-export const createWorkspaceRequest = async ({ name, description = 'This is dummy default description for the workspace, you can update/change this anytime.', token }) => {
+export const createWorkspaceRequest = async ({
+  name,
+  description = 'This is dummy default description for the workspace, you can update/change this anytime.',
+  token,
+}) => {
   try {
     const response = await apis.post(
       '/workspaces/',

@@ -24,7 +24,8 @@ const JoinPage = () => {
           length={6}
           classNames={{
             container: 'flex gap-x-2',
-            character: 'h-auto rounded-md border border-gray-300 flex items-center justify-center text-lg font-md',
+            character:
+              'h-auto rounded-md border border-gray-300 flex items-center justify-center text-lg font-md',
           }}
           autoFocus
         />
