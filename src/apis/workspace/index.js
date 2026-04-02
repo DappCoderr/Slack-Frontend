@@ -119,6 +119,24 @@ export const addMemberToWorkspace = async ({ workspaceId, memberId, role, token 
   }
 };
 
+export const joinWorkspaceRequest = async ({ workspaceId, joinCode, token }) => {
+  try {
+    const response = await apis.post(
+      `/workspaces/${workspaceId}/join`,
+      { memberId, role },
+      {
+        headers: {
+          'x-access-token': token,
+        },
+      }
+    );
+    return response?.data?.data;
+  } catch (error) {
+    console.log('Error in adding member to workspace request', error);
+    throw error.response.data;
+  }
+};
+
 export const resetJoinCodeRequest = async ({ workspaceId, token }) => {
   try {
     console.log('Workspace ID:', workspaceId);
