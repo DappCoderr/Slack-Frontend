@@ -121,9 +121,9 @@ export const addMemberToWorkspace = async ({ workspaceId, memberId, role, token 
 
 export const joinWorkspaceRequest = async ({ workspaceId, joinCode, token }) => {
   try {
-    const response = await apis.post(
+    const response = await apis.put(
       `/workspaces/${workspaceId}/join`,
-      { memberId, role },
+      {joinCode},
       {
         headers: {
           'x-access-token': token,
