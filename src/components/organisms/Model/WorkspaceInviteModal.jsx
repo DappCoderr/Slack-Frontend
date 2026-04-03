@@ -56,7 +56,7 @@ const WorkspaceInviteModal = ({
             {copied ? <CopyCheck className='size-4 ml-2' /> : <CopyIcon className='size-4 ml-2' />}
           </Button>
           <a
-            href={`/workspace/join/${workspaceId}`}
+            href={`/workspaces/join/${workspaceId}`}
             target='_blank'
             rel='noreferrer'
             className='text-blue-500'
