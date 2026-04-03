@@ -40,7 +40,7 @@ const AppRoutes = () => {
           <ProtectedRoute>
             Channel
           </ProtectedRoute>} />
-      <Route path='workspace/join/:workspaceId' element={<JoinPage />}/> 
+      <Route path='workspaces/join/:workspaceId' element={<JoinPage />}/> 
       <Route path='*' element={<NotFound />} />
     </Routes>
   );
