@@ -10,6 +10,7 @@ import Home from '@/pages/Home';
 import NotFound from '@/pages/NotFound';
 import JoinPage from '@/pages/Workspace/JoinPage';
 import WorkspaceLayout from '@/pages/Workspace/Layout';
+import Channel from './pages/Workspace/Channel';
 
 // prettier-ignore
 const AppRoutes = () => {
@@ -36,9 +37,9 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
-      <Route path='/workspaces/:workspaceId/channels/:id' element={
+      <Route path='/workspaces/:workspaceId/channels/:channelId' element={
           <ProtectedRoute>
-            Channel
+            <WorkspaceLayout><Channel/></WorkspaceLayout>
           </ProtectedRoute>} />
       <Route path='workspaces/join/:workspaceId' element={<JoinPage />}/> 
       <Route path='*' element={<NotFound />} />
