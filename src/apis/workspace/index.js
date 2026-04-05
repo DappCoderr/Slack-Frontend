@@ -123,7 +123,7 @@ export const joinWorkspaceRequest = async ({ workspaceId, joinCode, token }) => 
   try {
     const response = await apis.put(
       `/workspaces/${workspaceId}/join`,
-      {joinCode},
+      { joinCode },
       {
         headers: {
           'x-access-token': token,

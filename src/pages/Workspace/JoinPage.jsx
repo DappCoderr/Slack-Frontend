@@ -21,7 +21,8 @@ const JoinPage = () => {
       navigate(`/workspaces/${workspaceId}`);
     } catch (error) {
       console.log('Error in adding member to workspace', error);
-      const errorMessage = error?.message || 'Failed to join workspace. Please check the code and try again.';
+      const errorMessage =
+        error?.message || 'Failed to join workspace. Please check the code and try again.';
       toast.error(errorMessage);
     }
   };

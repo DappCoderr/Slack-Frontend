@@ -11,6 +11,7 @@ import {
 import { useParams } from 'react-router-dom';
 
 import SidebarItem from '@/components/atoms/SidebarItem/SidebarItem';
+import UserItem from '@/components/atoms/UserItem/UserItem';
 import WorkspacePanelHeader from '@/components/molecules/Workspace/WorkspacePanelHeader';
 import WorkspacePanelSection from '@/components/molecules/Workspace/WorkspacePanelSection';
 import { useGetWorkspaceById } from '@/hooks/apis/workspace/useGetWorkspaceById';
@@ -80,6 +81,19 @@ const WorkspacePanel = () => {
               variant={'default'}
             />
           ))}
+        </WorkspacePanelSection>
+
+        <WorkspacePanelSection label={'Direct Messages'} onIconClick={handleChannelModal}>
+          {workspace?.members?.map((item) => {
+            return (
+              <UserItem
+                key={item?._id}
+                memberId={item?._id}
+                lable={item?.userId?.username}
+                image={item?.userId?.avatar}
+              />
+            );
+          })}
         </WorkspacePanelSection>
       </div>
     </div>

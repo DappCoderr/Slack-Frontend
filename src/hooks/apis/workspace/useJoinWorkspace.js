@@ -14,9 +14,9 @@ export const useJoinWorkspace = (workspaceId, joinCode) => {
     mutateAsync: joinWorkspaceMutation,
   } = useMutation({
     mutationFn: (joinCode) => {
-        console.log("Token:", auth?.token)
-        return joinWorkspaceRequest({workspaceId, joinCode, token: auth?.token})
-    } ,
+      console.log('Token:', auth?.token);
+      return joinWorkspaceRequest({ workspaceId, joinCode, token: auth?.token });
+    },
     onSuccess: () => {
       console.log('Workspace joined successfully');
     },
